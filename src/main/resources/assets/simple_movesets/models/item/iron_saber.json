@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "textures": {
+    "layer0": "simple_movesets:item/iron_saber_gui"
+  },
+  "base": {
+    "parent": "simple_movesets:item/iron_saber_handheld"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "simple_movesets:item/iron_saber_gui"
+    },
+    "fixed": {
+      "parent": "simple_movesets:item/iron_saber_gui"
+    },
+    "ground": {
+      "parent": "simple_movesets:item/iron_saber_gui"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "simplemovesets.creative_tab": "Simple Movesets",
+
+  "item.simple_movesets.iron_saber": "Iron Saber",
+
+  "epicfight.weapon_category.saber": "Saber",
+
+  "skill.simple_movesets.riposte": "Riposte",
+
+  "skill.simple_movesets.riposte.tooltip": "Rapidly dodge backwards with no stamina cost.  \nIf this successfully evades an attack, perform a powerful counter."
+
+}
