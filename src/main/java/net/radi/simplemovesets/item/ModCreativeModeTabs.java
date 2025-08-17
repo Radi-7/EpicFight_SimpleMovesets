@@ -17,7 +17,13 @@ public class ModCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.IRON_SABER.get()))
                     .title(Component.translatable("simplemovesets.creative_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.WOODEN_SABER.get());
+                        output.accept(ModItems.STONE_SABER.get());
                         output.accept(ModItems.IRON_SABER.get());
+                        output.accept(ModItems.GOLDEN_SABER.get());
+                        output.accept(ModItems.DIAMOND_SABER.get());
+                        output.accept(ModItems.NETHERITE_SABER.get());
+
                     })
                     .build());
 

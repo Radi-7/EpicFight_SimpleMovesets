@@ -39,7 +39,7 @@ import yesman.epicfight.api.utils.math.Vec3f;
 import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.gameasset.EpicFightSounds;
 import yesman.epicfight.particle.EpicFightParticles;
-import yesman.epicfight.world.damagesource.EpicFightDamageType;
+import yesman.epicfight.world.damagesource.EpicFightDamageTypes;
 import yesman.epicfight.world.damagesource.StunType;
 import yesman.epicfight.world.effect.EpicFightMobEffects;
 
@@ -53,6 +53,7 @@ public class ModAnimations {
     public static AnimationAccessor<StaticAnimation> SABER_IDLE;
     public static AnimationAccessor<MovementAnimation> SABER_WALK;
     public static AnimationAccessor<MovementAnimation> SABER_RUN;
+    public static AnimationAccessor<DodgeAnimation> RIPOSTE_DODGE;
 
     @SubscribeEvent
     public static void registerAnimations(AnimationRegistryEvent event) {
@@ -79,5 +80,13 @@ public class ModAnimations {
                 new DashAttackAnimation(0.2F, 0.3F, 0.35F, 0.8F, 0.8F, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                         .addProperty(AttackAnimationProperty.BASIS_ATTACK_SPEED, 1.4F)
                         .addProperty(ActionAnimationProperty.CANCELABLE_MOVE, false));
+        RIPOSTE_DODGE = builder.nextAccessor("biped/skill/riposte_dodge", (accessor) ->
+                new DodgeAnimation(0.4F, 0.35F, accessor, 0.6F, 1.65F, Armatures.BIPED)
+                        .addState(EntityState.LOCKON_ROTATE, true)
+                        .newTimePair(0.0F, 0.2F)
+                        .addStateRemoveOld(EntityState.CAN_BASIC_ATTACK, false)
+                        .addStateRemoveOld(EntityState.CAN_SKILL_EXECUTION, false));
+
+
     }
 }

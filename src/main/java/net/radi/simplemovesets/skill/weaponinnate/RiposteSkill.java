@@ -1,20 +1,16 @@
-package net.radi.simplemovesets.skill.innate;
+package net.radi.simplemovesets.skill.weaponinnate;
 
-import java.util.List;
-import java.util.Map;
+import java.awt.*;
 import java.util.UUID;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.network.chat.Component;
+
 import net.minecraft.world.item.ItemStack;
-
 import net.radi.simplemovesets.gameasset.ModAnimations;
-
 import yesman.epicfight.api.animation.types.AttackAnimation;
 import yesman.epicfight.api.animation.types.DodgeAnimation;
 import yesman.epicfight.api.asset.AssetAccessor;
@@ -34,7 +30,7 @@ public class RiposteSkill extends WeaponInnateSkill {
 
     public RiposteSkill(SkillBuilder<? extends WeaponInnateSkill> builder) {
         super(builder);
-        this.first = Animations.BIPED_STEP_BACKWARD;
+        this.first = ModAnimations.RIPOSTE_DODGE;
         this.second = Animations.RUSHING_TEMPO1;
     }
 
@@ -59,6 +55,20 @@ public class RiposteSkill extends WeaponInnateSkill {
 
     @Override
     public WeaponInnateSkill registerPropertiesToAnimation() {
+        AttackAnimation anim = this.second.get();
+
+        for (AttackAnimation.Phase phase : anim.phases) {
+            phase.addProperties(this.properties.get(0).entrySet());
+        }
+
         return this;
+    }
+
+    @Override
+    public java.util.List<Component> getTooltipOnItem(ItemStack itemStack, CapabilityItem cap, PlayerPatch<?> playerCap) {
+        java.util.List<Component> list = super.getTooltipOnItem(itemStack, cap, playerCap);
+        this.generateTooltipforPhase(list, itemStack, cap, playerCap, this.properties.get(0), "Counter:");
+
+        return list;
     }
 }
